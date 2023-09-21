@@ -1,4 +1,4 @@
-﻿@model Dark_Furnus.Models.tblRegistration
+﻿@model Dark_Furnus.Models.TableCollection
 @{
     ViewData["Title"] = "RegistrationForm";
 }
@@ -23,7 +23,7 @@
        
 
         <label asp-for="Gender">Gender</label>
-        @foreach (var gender in ViewBag.gdr)
+        @foreach (var gender in Model.GenderList)
         {
 
             <label for="gender-@gender.GenderId">@gender.GenderName</label>
@@ -32,11 +32,11 @@
         }
 
         <label asp-for="Country">Country</label>
-        <select asp-for="Country" asp-items='new SelectList(ViewBag.ctr, "CountryId", "CountryName")'>
+        <select asp-for="Country" asp-items='new SelectList(Model.CountryList, "CountryId", "CountryName")'>
             <option value="">Select a Country</option>
         </select>
 
-        <label asp-for="State">Country</label>
+        <label asp-for="State">State</label>
         <select asp-for="State" asp-items='new SelectList("")'>
             <option value="0">Select a State</option>
         </select>

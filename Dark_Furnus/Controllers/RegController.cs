@@ -12,18 +12,34 @@ namespace Dark_Furnus.Controllers
         {
             this.db = database;
         }
+        [HttpGet]
         public IActionResult RegistrationForm()
         {
-          ViewBag.ctr=db.tblcountrys.ToList();
-          ViewBag.gdr=db.tblgenders.ToList();
-            return View();
+            TableCollection obj=new TableCollection();
+            obj.CountryList=db.tblcountrys.ToList();
+            obj.GenderList=db.tblgenders.ToList();
+          //ViewBag.ctr=db.tblcountrys.ToList();
+          //ViewBag.gdr=db.tblgenders.ToList();
+            return View(obj);
         }
         [HttpPost]
-        public IActionResult RegistrationForm(tblRegistration obj)
+        public IActionResult RegistrationForm(TableCollection TCobj)
         {
+            tblRegistration obj=new tblRegistration();
+            obj.UserName=TCobj.UserName;
+            obj.Password=TCobj.Password;
+            obj.Email=TCobj.Email;
+            obj.GamingName=TCobj.GamingName;
+            obj.Gender=TCobj.Gender;
+            obj.Country=TCobj.Country;
+            obj.FavoriteGame=TCobj.FavoriteGame;
+            obj.State=TCobj.State;
             db.tblRegistrations.Add(obj);
             db.SaveChanges();
-            return RedirectToAction("Show");
+            
+             return RedirectToAction("Show");
+
+            
         }
 
         public IActionResult Show()
@@ -51,6 +67,15 @@ namespace Dark_Furnus.Controllers
             var states = (from a in db.tblstates where a.cid==countryId select a).ToList();
             
              return Json(states); // Return the states as JSON
+        }
+
+        public IActionResult Delete(int Id)
+        {
+            var data = db.tblRegistrations.Find(Id);
+            if(data != null)
+            db.tblRegistrations.Remove(data);
+            db.SaveChanges();
+            return RedirectToAction("Show");
         }
 
     }

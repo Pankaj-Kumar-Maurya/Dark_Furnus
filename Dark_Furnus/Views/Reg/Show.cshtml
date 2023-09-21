@@ -24,6 +24,7 @@
             <td>@data.GenderForJoin</td>
             <td>@data.Email</td>
             <td>@data.Password</td>
+            <td>@Html.ActionLink("Delete", "Delete", "Reg", new { id = data.Id })</td>
         </tr>
     }
 </table>
