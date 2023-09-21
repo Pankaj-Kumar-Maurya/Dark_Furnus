@@ -1,0 +1,19 @@
+﻿body {
+    margin:0;
+    padding:0;
+}
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* 100% of the viewport height for vertical alignment */
+}
+
+/* Style the form as needed */
+form {
+    width: 290px; /* Adjust the width as needed */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}

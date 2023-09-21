@@ -1,0 +1,87 @@
+﻿@model Dark_Furnus.Models.tblRegistration
+@{
+    ViewData["Title"] = "RegistrationForm";
+}
+<head>
+    
+    <link href="~/css/registrationform.css" rel="stylesheet" />
+</head>
+
+<h1>RegistrationForm</h1>
+<div class="form-container">
+    <form asp-action="RegistrationForm" method="post">
+
+        <label asp-for="UserName">User Name</label>
+        <input asp-for="UserName" />
+
+        <label asp-for="GamingName">In Game Name</label>
+        <input asp-for="GamingName" />
+
+        <label asp-for="FavoriteGame">Favorite Game</label>
+        <input asp-for="FavoriteGame" />
+
+       
+
+        <label asp-for="Gender">Gender</label>
+        @foreach (var gender in ViewBag.gdr)
+        {
+
+            <label for="gender-@gender.GenderId">@gender.GenderName</label>
+            <input type="radio" asp-for="Gender" value="@gender.GenderId" id="gender-@gender.GenderId" />
+
+        }
+
+        <label asp-for="Country">Country</label>
+        <select asp-for="Country" asp-items='new SelectList(ViewBag.ctr, "CountryId", "CountryName")'>
+            <option value="">Select a Country</option>
+        </select>
+
+        <label asp-for="State">Country</label>
+        <select asp-for="State" asp-items='new SelectList("")'>
+            <option value="0">Select a State</option>
+        </select>
+
+
+        <label asp-for="Email">Email</label>
+        <input asp-for="Email" />
+
+        <label asp-for="Password">New Password</label>
+        <input asp-for="Password" />
+
+        <input type="submit" value="Register" />
+    </form>
+</div>
+
+
+<a href="~/lib/jquery/dist/jquery.min.map">~/lib/jquery/dist/jquery.min.map</a>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Bind onchange event to the Country dropdown
+        $("#Country").on("change", function () {
+            var selectedCountryId = $(this).val();
+
+            // Clear existing options in the State dropdown
+            $("#State").empty();
+
+            // Add the default "Select State" option
+            $("#State").append($('<option>').text('Select a State').attr('value', '0'));
+
+            // Send an AJAX request to fetch states based on the selected country
+            $.ajax({
+                url: "/Reg/GetStates", // Replace with the actual URL to fetch states
+                type: "GET",
+                data: { countryId: selectedCountryId },
+                success: function (data) {
+                    // Populate the State dropdown with the retrieved data
+                    $.each(data, function (i, state) {
+                        $("#State").append($('<option>').text(state.sname).attr('value', state.sid));
+                    });
+                },
+                error: function () {
+                    alert("Failed to fetch states.");
+                }
+            });
+        });
+    });
+</script>

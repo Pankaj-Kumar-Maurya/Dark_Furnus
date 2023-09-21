@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Dark_Furnus.Models.tblRegistrationForJoin>
+@{
+    ViewData["Title"] = "Show";
+}
+<table border="1" class="table table-dark table-striped">
+    <tr>
+        <td>User Name</td>
+        <td>Gaming Name</td>
+        <td>Game</td>
+        <td>Country</td>
+        <td>State</td>
+        <td>Gender</td>
+        <td>Email</td>
+        <td>Password</td>
+    </tr>
+    @foreach(var data in Model)
+    {
+        <tr>
+            <td>@data.UserName</td>
+            <td>@data.GamingName</td>
+            <td>@data.FavoriteGame</td>
+            <td>@data.CountryForJoin</td>
+            <td>@data.StateForJoin</td>
+            <td>@data.GenderForJoin</td>
+            <td>@data.Email</td>
+            <td>@data.Password</td>
+        </tr>
+    }
+</table>
+
