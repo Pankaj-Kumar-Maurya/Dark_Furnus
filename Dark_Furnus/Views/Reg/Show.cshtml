@@ -25,6 +25,7 @@
             <td>@data.Email</td>
             <td>@data.Password</td>
             <td>@Html.ActionLink("Delete", "Delete", "Reg", new { id = data.Id })</td>
+            <td>@Html.ActionLink("Edit", "RegistrationForm", "Reg", new { id = data.Id })</td>
         </tr>
     }
 </table>

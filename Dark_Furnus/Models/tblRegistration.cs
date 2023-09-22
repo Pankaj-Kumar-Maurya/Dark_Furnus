@@ -30,10 +30,10 @@ namespace Dark_Furnus.Models
         [EmailAddress(ErrorMessage = "Invalid Email Address.")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Password is required.")]
-        [RegularExpression(@"^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$",
-            ErrorMessage = "Password must contain at least 1 uppercase letter, 4 digits, 1 special character, and be 8 characters long.")]
-        [DataType(DataType.Password)]
+        //[Required(ErrorMessage = "Password is required.")]
+        //[RegularExpression(@"^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$",
+        //    ErrorMessage = "Password must contain at least 1 uppercase letter, 4 digits, 1 special character, and be 8 characters long.")]
+        //[DataType(DataType.Password)]
         public string Password { get; set; }
     }
 }

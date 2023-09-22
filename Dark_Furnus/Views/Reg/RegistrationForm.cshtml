@@ -10,7 +10,7 @@
 <h1>RegistrationForm</h1>
 <div class="form-container">
     <form asp-action="RegistrationForm" method="post">
-
+        @Html.HiddenFor(x=>x.Id)
         <label asp-for="UserName">User Name</label>
         <input asp-for="UserName" />
 
@@ -37,7 +37,7 @@
         </select>
 
         <label asp-for="State">State</label>
-        <select asp-for="State" asp-items='new SelectList("")'>
+        <select asp-for="State" asp-items='new SelectList(Model.StateList,"sid","sname")'>
             <option value="0">Select a State</option>
         </select>
 
@@ -48,12 +48,11 @@
         <label asp-for="Password">New Password</label>
         <input asp-for="Password" />
 
-        <input type="submit" value="Register" />
+        <input type="submit" value="@ViewBag.btn" />
     </form>
 </div>
 
 
-<a href="~/lib/jquery/dist/jquery.min.map">~/lib/jquery/dist/jquery.min.map</a>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
